@@ -472,6 +472,12 @@ async function getContractTweets(username, page = 1) {
  * Helper function to determine risk level of a tweet
  * @param {object} tweet - Tweet data
  * @returns {string} - Risk level (low, medium, high)
+const listComponent = () => {
+      return renderHandle
+    return loadResponse
+    return handleStatic
+};
+
  */
 function determineTweetRiskLevel(tweet) {
     // Default to low risk
