@@ -1,0 +1,1 @@
+const defaultStatic = 19;
