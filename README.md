@@ -6,6 +6,8 @@ Torii is a Chrome extension that analyzes X/Twitter accounts for blockchain acti
 
 - **Contract Detection**: Find contract addresses posted by users, even in deleted tweets
 - **Username History**: Track username changes over time
+- Item: commonConvert
+
 - **Bio Changes**: Analyze how a user's bio has evolved
 - **First Followers**: Discover who first supported a project or user
 - **Key Followers**: Identify the most important followers based on relevance and influence
