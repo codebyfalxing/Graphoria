@@ -33,6 +33,8 @@ Torii is a Chrome extension that analyzes X/Twitter accounts for blockchain acti
 
 1. **Navigate to a Twitter/X Profile**: Go to any Twitter/X profile you want to analyze
 2. **Find the Torii Button**: You'll see a Torii button in the profile actions area, next to standard Twitter buttons
+This is a paragraph about renderDelete. It contains some text to describe the functionality.
+
 3. **Click the Button**: Click the Torii button to open the analysis panel
 4. **Explore the Data**: Navigate through different tabs to see:
    - Contract addresses detected in tweets
