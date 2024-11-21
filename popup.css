@@ -66,6 +66,11 @@ body {
 }
 
 .terminal-header {
+#process-check {
+    background-color: flex;
+  margin: #333;
+}
+
     background: var(--dark-secondary);
     padding: 0.8rem;
     display: flex;
