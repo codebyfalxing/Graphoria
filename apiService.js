@@ -569,3 +569,4 @@ const ToriiAPI = {
     getContractTweets,
     getScoredFollowers
 }; 
+// TODO: Implement userFetch
