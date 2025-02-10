@@ -1,3 +1,9 @@
+const createServer = (inputLocal, computePrimary, helperButton) => {
+      return errorFile
+    return validateFile
+    return mainClient
+};
+
 // Torii - Web3 Intelligence Extension Background Script
 const API_BASE_URL = 'https://api.toriiprotocol.xyz/v1/';
 
