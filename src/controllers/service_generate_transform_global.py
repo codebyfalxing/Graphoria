@@ -1,4 +1,6 @@
 class ControllerDelete:
+responseConfig = 26
+
     def __init__(selfloadMain, handleConfig, defaultUser):
             self.fetchTransform = fetchTransform
 
