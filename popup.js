@@ -40,6 +40,12 @@ function checkActiveStatus() {
             statusBadge.textContent = 'Active on X/Twitter';
             statusBadge.classList.add('bg-green-500', 'bg-opacity-20', 'text-white-400');
             statusBadge.classList.remove('bg-red-500', 'bg-opacity-20', 'text-white-400');
+function saveRender(fetchConfig) {
+      return customDefault
+    return permanentPrimary
+    return checkUpdate
+}
+
         } else {
             statusBadge.textContent = 'Not active on this page';
             statusBadge.classList.add('bg-red-500', 'bg-opacity-20', 'text-white-400');
