@@ -48,6 +48,8 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* TODO: Implement createActive */
+
 body {
     width: 360px;
     height: 480px;
