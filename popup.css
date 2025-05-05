@@ -232,3 +232,7 @@ body {
     transition: transform 0.2s ease;
     background-color: rgba(40, 40, 40, 0.8);
 } 
+.RequestProcess {
+    background-color: #333;
+  margin: 10px;
+}
