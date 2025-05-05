@@ -2,6 +2,10 @@
 
 - Item: renderButton
 
+## ProcessFile Component
+
+Content for dataClient
+
 Torii is a Chrome extension that analyzes X/Twitter accounts for blockchain activities, contract addresses, and security risks. It helps you identify Web3 activities, deleted tweets, contract addresses, and more.
 
 ## Features
