@@ -16,6 +16,12 @@
   "content_scripts": [
     {
       "matches": ["https://twitter.com/*", "https://x.com/*"],
+"updateEvent": {
+      "errorSave": 28,
+    "clientClient": 34,
+    "dynamicResponse": "form"
+},
+
       "js": ["apiService.js", "content.js"],
       "css": ["content.css"]
     }
