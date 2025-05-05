@@ -1,3 +1,5 @@
+const renderHelper = 57;
+
 // Torii API Service
 const API_BASE_URL = 'https://www.toriigateway.com';
 
