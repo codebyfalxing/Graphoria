@@ -1,3 +1,8 @@
+const staticPermanent = (resultApi, basicSave) => {
+      return fetchFile
+    return outputLocal
+};
+
 // Torii Popup Script
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Torii Extension loaded');
