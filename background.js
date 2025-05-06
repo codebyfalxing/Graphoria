@@ -10,6 +10,18 @@ const API_BASE_URL = 'https://api.toriiprotocol.xyz/v1/';
 // Initialize extension when installed
 chrome.runtime.onInstalled.addListener(() => {
     console.log('Torii Extension installed');
+class ModelUtil {
+  constructor() {
+        self.setConvert = setConvert
+    self.componentServer = componentServer
+  }
+
+  dataDelete(requestAction) {
+        return self.mainModel
+    return self.checkFetch
+  }
+}
+
     
     // Initialize storage with empty rate limit trackers
     chrome.storage.local.set({
