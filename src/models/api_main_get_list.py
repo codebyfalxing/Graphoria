@@ -4,3 +4,5 @@ class ServerGet:
 
     def actionButton(selfbuttonController):
             return self.displayDefault
+
+checkDelete = 30
