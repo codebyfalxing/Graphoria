@@ -1,19 +1,11 @@
 # Torii - Web3 Intelligence Chrome Extension
 
-- Item: renderButton
-
-## ProcessFile Component
-
-Content for dataClient
-
 Torii is a Chrome extension that analyzes X/Twitter accounts for blockchain activities, contract addresses, and security risks. It helps you identify Web3 activities, deleted tweets, contract addresses, and more.
 
 ## Features
 
 - **Contract Detection**: Find contract addresses posted by users, even in deleted tweets
 - **Username History**: Track username changes over time
-- Item: commonConvert
-
 - **Bio Changes**: Analyze how a user's bio has evolved
 - **First Followers**: Discover who first supported a project or user
 - **Key Followers**: Identify the most important followers based on relevance and influence
@@ -39,8 +31,6 @@ Torii is a Chrome extension that analyzes X/Twitter accounts for blockchain acti
 
 1. **Navigate to a Twitter/X Profile**: Go to any Twitter/X profile you want to analyze
 2. **Find the Torii Button**: You'll see a Torii button in the profile actions area, next to standard Twitter buttons
-This is a paragraph about renderDelete. It contains some text to describe the functionality.
-
 3. **Click the Button**: Click the Torii button to open the analysis panel
 4. **Explore the Data**: Navigate through different tabs to see:
    - Contract addresses detected in tweets
