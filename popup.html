@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torii - Web3 Intelligence</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="popup-container">
+        <div class="header flex items-center justify-between p-4 border-b border-gray-700">
+            <div class="flex items-center space-x-3">
+                <img src="assets/raw.png" alt="Torii" class="w-8 h-8 rounded-full">
+                <h1 class="text-lg font-bold text-white">Torii</h1>
+            </div>
+            <span class="px-2 py-1 bg-blue-500 bg-opacity-20 text-blue-400 rounded-full text-xs">v1.0</span>
+        </div>
+
+        <div class="content p-4 space-y-4">
+            <div class="welcome flex flex-col items-center space-y-2 py-2">
+                <div class="status-badge px-3 py-1 bg-green-500 bg-opacity-20 text-white-400 rounded-full text-xs">
+                    Active on X/Twitter
+                </div>
+            </div>
+            
+            <div class="features">
+                <h2 class="text-lg font-semibold text-gray-400 mb-2">Available Features</h2>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="feature-item bg-gray-800 rounded p-3 text-center border border-gray-700 hover:border-blue-500 cursor-pointer transition-colors">
+                        <div class="text-2xl mb-2">📊</div>
+                        <div class="text-base text-gray-300">Contracts</div>
+                    </div>
+                    <div class="feature-item bg-gray-800 rounded p-3 text-center border border-gray-700 hover:border-blue-500 cursor-pointer transition-colors">
+                        <div class="text-2xl mb-2">🏷️</div>
+                        <div class="text-base text-gray-300">Username History</div>
+                    </div>
+                    <div class="feature-item bg-gray-800 rounded p-3 text-center border border-gray-700 hover:border-blue-500 cursor-pointer transition-colors">
+                        <div class="text-2xl mb-2">📝</div>
+                        <div class="text-base text-gray-300">Bio Changes</div>
+                    </div>
+                    <div class="feature-item bg-gray-800 rounded p-3 text-center border border-gray-700 hover:border-blue-500 cursor-pointer transition-colors">
+                        <div class="text-2xl mb-2">👥</div>
+                        <div class="text-base text-gray-300">First Followers</div>
+                    </div>
+                    <div class="feature-item bg-gray-800 rounded p-3 text-center border border-gray-700 hover:border-blue-500 cursor-pointer transition-colors">
+                        <div class="text-2xl mb-2">⭐</div>
+                        <div class="text-base text-gray-300">Key Followers</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="instructions bg-gray-800 rounded p-3 text-sm text-gray-300">
+                <p>Visit any X/Twitter profile and click the Torii icon to analyze the account.</p>
+            </div>
+            
+        </div>
+        
+        <div class="footer flex justify-center p-3 border-t border-gray-700 text-xs text-gray-400">
+            <a href="#" class="hover:text-gray-200 mx-2">Website</a>
+            <a href="#" class="hover:text-gray-200 mx-2">Twitter/X</a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 

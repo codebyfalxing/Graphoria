@@ -1,0 +1,227 @@
+:root {
+    --window-bg: #2A2B2E;
+    --terminal-bg: #1E1E1E;
+    --text: #FFFFFF;
+    --accent: #3b64c2;
+    --border: #3A3A3A;
+    
+    /* Dark theme variables */
+    --dark-bg: #121212;
+    --dark-surface: #1E1E1E;
+    --dark-primary: #3b64c2;
+    --dark-secondary: #2A2B2E;
+    --dark-border: #3A3A3A;
+    --dark-text: #E0E0E0;
+    --dark-text-secondary: #AAAAAA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom scrollbar for the entire extension - hidden by default */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Only show scrollbar on hover */
+*:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    width: 360px;
+    height: 480px;
+    background: var(--dark-bg);
+    overflow: hidden;
+    color: var(--dark-text);
+}
+
+.terminal-window {
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.terminal-header {
+    background: var(--dark-secondary);
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+}
+
+.close { background: #FF5F56; }
+.minimize { background: #FFBD2E; }
+.maximize { background: #27C93F; }
+
+.title-bar {
+    color: var(--dark-text);
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    opacity: 0.8;
+}
+
+.terminal-content {
+    background: var(--dark-surface);
+    padding: 2rem;
+    height: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-text {
+    text-align: center;
+    color: var(--dark-text);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease 0.3s forwards;
+    opacity: 0;
+}
+
+.logo {
+    height: 40px;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    color: var(--dark-text-secondary);
+}
+
+.countdown-container {
+    text-align: center;
+    color: var(--dark-text);
+    animation: fadeIn 0.5s ease 0.6s forwards;
+    opacity: 0;
+    padding: 2rem;
+    background: rgba(59, 100, 194, 0.15);
+    border-radius: 10px;
+    margin-top: 1rem;
+    border: 1px solid rgba(59, 100, 194, 0.3);
+}
+
+.launch-info {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-primary);
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.token-info {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+.target-date {
+    font-size: 1rem;
+    color: var(--dark-primary);
+    font-weight: 500;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dark-border);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    background-color: var(--dark-bg);
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    background-color: var(--dark-surface);
+}
+
+/* Removed custom scrollbar - using global one defined above */
+
+.feature-item {
+    animation: fadeIn 0.3s ease forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+    opacity: 0;
+    background-color: var(--dark-surface);
+    color: var(--dark-text);
+    border: 1px solid var(--dark-border);
+}
+
+.feature-item:nth-child(1) {
+    --index: 1;
+}
+
+.feature-item:nth-child(2) {
+    --index: 2;
+}
+
+.feature-item:nth-child(3) {
+    --index: 3;
+}
+
+.feature-item:nth-child(4) {
+    --index: 4;
+}
+
+/* Hover effects */
+.feature-item:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+    background-color: rgba(40, 40, 40, 0.8);
+} 

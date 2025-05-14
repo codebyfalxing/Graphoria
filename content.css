@@ -1,0 +1,618 @@
+:root {
+    --window-bg: #2A2B2E;
+    --terminal-bg: #1E1E1E;
+    --text: #FFFFFF;
+    --accent: #3b64c2;
+    --border: #3A3A3A;
+    
+    /* Dark theme variables */
+    --dark-bg: #121212;
+    --dark-surface: #1E1E1E;
+    --dark-primary: #3b64c2;
+    --dark-secondary: #2A2B2E;
+    --dark-border: #3A3A3A;
+    --dark-text: #E0E0E0;
+    --dark-text-secondary: #AAAAAA;
+    --dark-risk-high: rgba(239, 68, 68, 0.7);
+    --dark-risk-medium: rgba(245, 158, 11, 0.7);
+    --dark-risk-low: rgba(16, 185, 129, 0.7);
+}
+
+/* Apply font to all elements */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom scrollbar for the entire extension - hidden by default */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Only show scrollbar on hover */
+*:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.scan-terminal-btn {
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-right: 8px;
+    width: 34px;
+    height: 34px;
+    position: relative;
+    top: -12px;
+    border: 1px solid rgb(83, 100, 113);
+    color: rgb(239, 243, 244);
+    min-width: 36px;
+    min-height: 36px;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-flex: 0;
+}
+
+.scan-terminal-btn:hover {
+    background-color: rgba(239, 243, 244, 0.1);
+}
+
+.scan-terminal-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: contain;
+    color: rgb(239, 243, 244);
+}
+
+/* Popup Menu Styles */
+.scan-popup {
+    position: absolute;
+    background: var(--window-bg);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    min-width: 200px;
+    z-index: 1000;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.scan-popup-header {
+    background: var(--border);
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+}
+
+.close { background: #FF5F56; }
+.minimize { background: #FFBD2E; }
+.maximize { background: #27C93F; }
+
+.scan-popup-content {
+    background: var(--terminal-bg);
+    padding: 1rem;
+}
+
+.scan-option {
+    padding: 0.8rem 1rem;
+    color: rgb(239, 243, 244);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    transition: background 0.2s;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+}
+
+.scan-option:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+
+.terminal-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--window-bg);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    min-width: 600px;
+    max-width: 80vw;
+    max-height: 80vh;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: var(--border);
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terminal-title {
+    color: var(--text);
+    margin-left: 8px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.terminal-content {
+    background: var(--terminal-bg);
+    padding: 1.5rem;
+    color: var(--text);
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    max-height: calc(80vh - 48px);
+    overflow-y: auto;
+}
+
+/* Torii - Twitter/X Blockchain Intelligence Extension Styles */
+
+/* Base button style - improved to match Twitter's UI */
+.torii-btn {
+    background: transparent !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    border-radius: 9999px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border: 1px solid rgb(207, 217, 222) !important;
+    margin-left: 4px !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.torii-btn:hover {
+    background-color: rgba(15, 20, 25, 0.1) !important;
+}
+
+.torii-icon {
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: cover !important;
+    transform: scale(1.5) !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+}
+
+/* Dark mode adjustment for Twitter's dark theme */
+[data-color-scheme="dark"] .torii-btn {
+    border-color: rgb(83, 100, 113) !important;
+}
+
+[data-color-scheme="dark"] .torii-btn:hover {
+    background-color: rgba(239, 243, 244, 0.1) !important;
+}
+
+/* Base modal styles to supplement Tailwind classes */
+.torii-modal-container {
+    z-index: 10000; /* High z-index to ensure it's above Twitter's UI */
+    overflow: visible !important;
+}
+
+/* Animation for modal */
+@keyframes modal-fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.torii-modal {
+    animation: modal-fade-in 0.2s ease-out;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    overflow: visible !important;
+}
+
+/* Glass effect for dark theme */
+.glass-bg {
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--dark-text);
+}
+
+.glass-bg-dark {
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--dark-text);
+}
+
+/* Improved contrast for text in dark mode */
+.torii-modal h2, 
+.torii-modal h3, 
+.torii-modal h4, 
+.torii-modal .text-gray-800, 
+.torii-modal .font-medium,
+.torii-modal .font-bold {
+    color: var(--dark-text) !important;
+}
+
+.torii-modal .text-gray-700 {
+    color: var(--dark-text-secondary) !important;
+}
+
+/* Custom hidden scrollbars for modal */
+.torii-modal ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+}
+
+.torii-modal ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.torii-modal ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.torii-modal:hover ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.torii-modal ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Custom tooltips with higher z-index */
+.feature-item {
+    transition: all 0.2s ease;
+    position: relative;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 0 4px;
+    color: var(--dark-text);
+    z-index: 1001; /* Higher than navigation container */
+    padding: 6px 10px !important; /* Smaller padding */
+}
+
+.feature-item .font-medium {
+    font-size: 0.75rem !important; /* Smaller font size for button text */
+    font-weight: 500;
+}
+
+.feature-item .text-xl {
+    font-size: 1.1rem !important; /* Slightly smaller icon size */
+    margin-right: 4px !important;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 99999; /* Extremely high z-index to ensure it's on top */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.custom-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+}
+
+.feature-item:hover .custom-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.feature-item:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.feature-item.active, 
+.feature-item[aria-selected="true"] {
+    background-color: rgba(59, 100, 194, 0.2);
+    border-bottom: 2px solid var(--dark-primary);
+    color: var(--dark-primary);
+}
+
+.feature-item:focus-visible {
+    outline: 2px solid var(--dark-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Data visualization styles */
+.data-card {
+    transition: all 0.2s ease;
+    background-color: var(--dark-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--dark-border);
+}
+
+.data-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+/* Contract address cards */
+.contract-card {
+    border: 1px solid var(--dark-border);
+    background-color: var(--dark-surface);
+    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.contract-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+.contract-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.contract-header-high-risk {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(239, 68, 68, 0.2));
+    color: #ff6b6b;
+}
+
+.contract-header-medium-risk {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(245, 158, 11, 0.2));
+    color: #ffa94d;
+}
+
+.contract-header-low-risk {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.2));
+    color: #34d399;
+}
+
+.contract-body {
+    padding: 1rem;
+}
+
+.contract-address {
+    font-family: monospace;
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    word-break: break-all;
+    font-size: 0.875rem;
+    border: 1px solid var(--dark-border);
+    color: #ffffff;
+}
+
+.contract-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.action-link {
+    color: var(--dark-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(59, 100, 194, 0.1);
+}
+
+.action-link:hover {
+    color: #5a82e0;
+    background-color: rgba(59, 100, 194, 0.2);
+}
+
+.action-link:focus-visible {
+    outline: 2px solid var(--dark-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+.action-link svg {
+    margin-right: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Keyboard navigation highlights */
+.keyboard-focus:focus-visible {
+    outline: 2px solid var(--dark-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+/* Tables styling */
+.torii-modal table {
+    background-color: rgba(30, 30, 30, 0.6);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--dark-border);
+}
+
+.torii-modal thead {
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+.torii-modal tbody tr:hover {
+    background-color: rgba(50, 50, 50, 0.8);
+}
+
+/* Improved tooltips - for elements still using data-tooltip */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    z-index: 99999; /* Matching custom tooltip z-index */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+[data-tooltip]:after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% - 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 99999;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    opacity: 1;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 640px) {
+    .torii-modal {
+        width: 95vw;
+        height: 95vh;
+        max-width: none;
+        max-height: none;
+        border-radius: 0.5rem;
+    }
+    
+    .feature-item {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Navigation container dark styling */
+.navigation-container {
+    background-color: var(--dark-surface) !important;
+    border-color: var(--dark-border) !important;
+    position: relative;
+    overflow: visible !important; /* Ensure tooltips can display outside the container */
+    z-index: 1000; /* Base z-index for the navigation */
+    padding: 6px 10px !important; /* Smaller padding */
+}
+
+.navigation-container .inline-flex {
+    background-color: rgba(20, 20, 20, 0.5) !important;
+    position: relative;
+    overflow: visible !important;
+    gap: 2px !important; /* Smaller gap between buttons */
+}
+
+/* Adjust spacing for feature items in a row */
+.feature-item .space-x-2 > * + * {
+    margin-left: 0.25rem !important; /* Reduce spacing between icon and text */
+}
+
+/* Dark mode for modal header */
+.torii-modal .flex.items-center.justify-between.p-4 {
+    background-color: var(--dark-secondary);
+    border-color: var(--dark-border);
+}
+
+/* Make all bg-gray-100 elements dark */
+.bg-gray-100 {
+    background-color: rgba(30, 30, 30, 0.6) !important;
+}
+
+/* Make all bg-gray-50 elements dark */
+.bg-gray-50 {
+    background-color: rgba(20, 20, 20, 0.5) !important;
+}
+
+/* Add styles for any popover elements */
+.popover, 
+.dropdown-menu, 
+.tooltip, 
+.modal-content {
+    z-index: 10002 !important; /* Ensure these always appear on top */
+}
