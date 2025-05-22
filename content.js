@@ -1,9 +1,3 @@
-const primaryUpdate = (formItem, displayInput) => {
-      return userServer
-    return buttonTransform
-    return configProcess
-};
-
 // Torii - X/Twitter Blockchain Intelligence Extension
 
 // Check if ToriiAPI is defined
@@ -33,6 +27,13 @@ function injectTailwindCSS() {
 
 // Main Features configuration
 const FEATURES = [
+    {
+        id: 'launchcoin-detection',
+        name: 'Believe/Pump',
+        description: 'Find tweets mentioning @launchcoin or @launchonpump with specific patterns.',
+        icon: '🚀',
+        color: 'bg-red-500'
+    },
     {
         id: 'ca-detection',
         name: 'Contracts',
@@ -398,6 +399,9 @@ function loadFeatureContent(featureId, username, contentArea) {
     // Real API calls
     let apiPromise;
     switch (featureId) {
+        case 'launchcoin-detection':
+            apiPromise = ToriiAPI.getLaunchcoinTweets(username);
+            break;
         case 'ca-detection':
             apiPromise = ToriiAPI.getContractTweets(username);
             break;
@@ -466,6 +470,9 @@ function getFeatureName(featureId) {
 // Render feature content based on feature ID
 function renderFeatureContent(featureId, username, contentArea, data) {
     switch (featureId) {
+        case 'launchcoin-detection':
+            renderLaunchcoinDetection(username, contentArea, data);
+            break;
         case 'ca-detection':
             renderCADetection(username, contentArea, data);
             break;
@@ -520,6 +527,47 @@ function renderErrorState(container, message, username, featureId) {
 }
 
 // Feature renderers
+function renderLaunchcoinDetection(username, container, data) {
+    container.innerHTML = `
+        <div class="space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-gray-800">Believe/Pump Mentions</h3>
+                <span class="px-3 py-1 bg-red-500 bg-opacity-20 text-red-700 rounded-full text-sm">Last updated: Just now</span>
+            </div>
+            
+            <p class="text-gray-700">We found <strong>${data.tweets.length} mentions</strong> by @${username}.</p>
+            
+            <div class="space-y-4">
+                ${data.tweets.length > 0 ? data.tweets.map(tweet => `
+                <div class="contract-card">
+                    <div class="contract-header">
+                        <span class="font-medium">
+                            ${tweet.deleted ? '<span class="text-orange-400">[DELETED]</span> ' : ''}
+                            Tweet • ${tweet.date}
+                        </span>
+                        <div class="flex items-center">
+                            <span class="px-2 py-1 bg-red-500 bg-opacity-30 text-red-800 rounded text-xs">${tweet.mentionedAccount}</span>
+                        </div>
+                    </div>
+                    <div class="contract-body">
+                        <div class="tweet-message mb-3 text-gray-300 p-3 bg-gray-800 bg-opacity-50 rounded">
+                            ${tweet.deleted ? '<div class="text-orange-400 text-xs mb-1">This tweet has been deleted but was captured by Torii.</div>' : ''}
+                            ${tweet.message}
+                        </div>
+                        <div class="contract-actions">
+                            <a href="${tweet.tweetLink}" target="_blank" class="action-link" data-tooltip="View the original tweet${tweet.deleted ? ' (Note: This tweet was deleted and may no longer be accessible)' : ''}">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+                                ${tweet.deleted ? 'View Deleted Tweet' : 'View Original Tweet'}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                `).join('') : '<div class="text-center text-gray-500 py-10">No mentions found</div>'}
+            </div>
+        </div>
+    `;
+}
+
 function renderCADetection(username, container, data) {
     container.innerHTML = `
         <div class="space-y-6">

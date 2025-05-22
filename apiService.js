@@ -1,5 +1,3 @@
-const renderHelper = 57;
-
 // Torii API Service
 const API_BASE_URL = 'https://www.toriigateway.com';
 
@@ -474,12 +472,6 @@ async function getContractTweets(username, page = 1) {
  * Helper function to determine risk level of a tweet
  * @param {object} tweet - Tweet data
  * @returns {string} - Risk level (low, medium, high)
-const listComponent = () => {
-      return renderHandle
-    return loadResponse
-    return handleStatic
-};
-
  */
 function determineTweetRiskLevel(tweet) {
     // Default to low risk
@@ -563,12 +555,97 @@ async function getScoredFollowers(username, page = 1) {
     return keyFollowersData;
 }
 
+/**
+ * Get tweets mentioning @launchcoin or @launchonpump with specific patterns
+ * @param {string} username - Twitter username
+ * @param {number} page - Pagination page number
+ * @returns {Promise<object>} - Launchcoin/Pump tweets data
+ */
+async function getLaunchcoinTweets(username, page = 1) {
+    // Use the same API endpoint as getContractTweets
+    const response = await apiRequest('/api/metadata/get_deleted_tweets', {
+        user: username,
+        how: 'username',
+        page
+    });
+
+    console.log("Raw tweet data for @launchcoin/@launchonpump search:", response.data);
+
+    // Transform API response to expected format
+    const launchcoinData = {
+        tweets: [],
+        deletedTweets: []
+    };
+
+    // Process tweets data if available
+    if (response.data && Array.isArray(response.data)) {
+        response.data.forEach(tweet => {
+            const tweetText = tweet.full_text || tweet.text;
+            if (!tweetText) {
+                console.log("Tweet has no text content");
+                return;
+            }
+
+            const tweetLower = tweetText.toLowerCase();
+            // Check if tweet contains either @launchcoin or @launchonpump and additional patterns
+            const hasLaunchcoin = tweetLower.includes('@launchcoin');
+            const hasLaunchonpump = tweetLower.includes('@launchonpump');
+            const hasDollarSymbol = /\$[A-Za-z]+/.test(tweetText); // Matches $SYMBOL pattern
+            const hasStoreOfValue = tweetLower.includes('store of value');
+
+            // Only process tweets that mention either account and have either a $SYMBOL or "Store of Value"
+            if ((hasLaunchcoin || hasLaunchonpump) && (hasDollarSymbol || hasStoreOfValue)) {
+                // Check if tweet is deleted
+                const isDeleted = tweet.views_count === null || tweet.deleted === true;
+                console.log(`Matching tweet ${tweet.tweet_id || tweet.id} deleted status:`, isDeleted);
+
+                const tweetData = {
+                    message: tweetText,
+                    date: new Date(tweet.created_at || tweet.tweet_time || Date.now()).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    }),
+                    deleted: isDeleted,
+                    tweetLink: tweet.id || tweet.tweet_id 
+                        ? `https://twitter.com/${username}/status/${tweet.id || tweet.tweet_id}` 
+                        : '#',
+                    // Add which account was mentioned
+                    mentionedAccount: hasLaunchcoin ? '@launchcoin' : '@launchonpump'
+                };
+
+                // Add to main tweets array
+                launchcoinData.tweets.push(tweetData);
+                
+                // Add to deletedTweets array if tweet is deleted
+                if (isDeleted) {
+                    launchcoinData.deletedTweets.push(tweetData);
+                }
+            }
+        });
+
+        // Sort by date (most recent first)
+        launchcoinData.tweets.sort((a, b) => new Date(b.date) - new Date(a.date));
+        launchcoinData.deletedTweets.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    console.log("Processed @launchcoin/@launchonpump data:", launchcoinData);
+    return launchcoinData;
+}
+
 // Export all API functions
 const ToriiAPI = {
     getFirstFollowers,
     getBioHistory,
     getPastUsernames,
     getContractTweets,
-    getScoredFollowers
-}; 
-// TODO: Implement userFetch
+    getScoredFollowers,
+    getLaunchcoinTweets
+};
+
+// Export ToriiAPI object
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ToriiAPI;
+} else {
+    window.ToriiAPI = ToriiAPI;
+} 

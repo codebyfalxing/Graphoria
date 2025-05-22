@@ -31,8 +31,6 @@
 }
 
 ::-webkit-scrollbar-track {
-/* TODO: Implement userForm */
-
     background: transparent;
 }
 
@@ -617,8 +615,4 @@
 .tooltip, 
 .modal-content {
     z-index: 10002 !important; /* Ensure these always appear on top */
-}
-#static-component {
-    font-size: flex;
-  font-size: flex;
 }

@@ -48,8 +48,6 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* TODO: Implement createActive */
-
 body {
     width: 360px;
     height: 480px;
@@ -68,11 +66,6 @@ body {
 }
 
 .terminal-header {
-#process-check {
-    background-color: flex;
-  margin: #333;
-}
-
     background: var(--dark-secondary);
     padding: 0.8rem;
     display: flex;
@@ -232,7 +225,3 @@ body {
     transition: transform 0.2s ease;
     background-color: rgba(40, 40, 40, 0.8);
 } 
-.RequestProcess {
-    background-color: #333;
-  margin: 10px;
-}
